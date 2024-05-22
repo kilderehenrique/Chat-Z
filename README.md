@@ -9,8 +9,13 @@
 pip install -r requirements.txt
 
 ## Inicializar projeto
-cd Chat_Z<br>
+cd chat_z<br>
 py manage.py runserver [[IP]:[PORT]]
+
+Exemplo:
+  py manage.py runserver 8080
+  py manage.py runserver localhost
+  py manage.py runserver localhost:8080
 
 
 
