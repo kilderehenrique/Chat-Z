@@ -44,6 +44,14 @@ chatTraduzir = [
       role = "model",
       parts = [dict(text = "Certo, vou responder apenas com um texto corrido e sem explicações.")]
    ),
+   dict(
+      role = "user",
+      parts = [dict(text = "qualquer texto informado deve ser apenas traduzido, nada alem disso")]
+   ),
+   dict(
+      role = "model",
+      parts = [dict(text = "Certo, vou somente traduzi-lo")]
+   ),
 ]
 
 chatGerarCodigo = [
@@ -82,7 +90,7 @@ AVISOS = {
 
 
 def resumir(texto):
-   texto = f"Resuma esse texto: '{texto}'"
+   texto = f"Resuma o texto entre aspas simples: '{texto}'"
 
    chat = model.start_chat(history = chatResumir)
 
@@ -94,7 +102,7 @@ def resumir(texto):
    return response.text
 
 def traduzir(texto):
-   texto = f"Traduza esse texto: '{texto}'"
+   texto = f"Traduza o texto entre aspas simples: '{texto}'"
 
    chat = model.start_chat(history = chatTraduzir)
 
@@ -119,7 +127,7 @@ def gerar_codigo(texto):
    return "Forneça uma descrição do código que deseja gerar por favor!"
 
 def isDescricaoCodigo(texto):
-   texto = f"'{texto}'\nEsse texto é uma descrição das funcionalidades de um código ou algoritmo?"
+   texto = f"'{texto}'\nO texto entre aspas simples é uma descrição das funcionalidades de um código ou algoritmo?"
    chat = model.start_chat(history = chatInstrucao)
 
    try:
