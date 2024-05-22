@@ -10,7 +10,7 @@ pip install -r requirements.txt
 
 ## Inicializar projeto
 cd Chat_Z<br>
-py manage.py runserver [PORT]
+py manage.py runserver [[IP]:[PORT]]
 
 
 

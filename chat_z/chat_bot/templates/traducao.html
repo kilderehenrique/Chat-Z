@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+   <h1>Traduzir Texto</h1>
+
+   <form action="{% url 'traducao' %}" method="POST" style="height: 100%;">
+      {% csrf_token %}
+      <textarea style="resize: none; width: 100%; height: 70%;" name="inputChat" placeholder="Informe o texto a ser traduzido"></textarea>
+      <br>
+      <br>  
+      <input type="submit" value="Traduzir">
+   </form>
+
+   {% if traducao != None %}
+      <h1>Resposta</h1>
+      <div markdown="1" id="responseDisplay" onended="focarNaResposta()" style="border: 3px solid black; border-radius: 8px; margin-bottom: 100px; min-height: 300px; padding: 20px;">
+         {% autoescape off %}
+            {{traducao}}
+         {% endautoescape %}
+      </div>
+
+      <script>
+         window.location.hash = '#responseDisplay';
+      </script>
+   {% endif %}
+
+{% endblock %}

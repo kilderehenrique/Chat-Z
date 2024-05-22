@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1><strong>Funções</strong></h1>
+
+<button class="funcoes" onclick="location.href='{% url "resumo" %}'">Resumo / Sumarização</button> <br>
+<button class="funcoes" onclick="location.href='{% url "traducao" %}'">Tradução de Texto</button> <br>
+<button class="funcoes" onclick="location.href='{% url "gerar_codigo" %}'">Geração Código</button> <br>
+
+{% endblock %}
