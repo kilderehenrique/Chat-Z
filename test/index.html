@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .txtArea {
+         width: 400px;
+         height: 300px;
+      }
+   </style>
+</head>
+<body>
+   
+   <textarea class="txtArea" name="chatInput" id="chatInput" placeholder="Entrada"></textarea>
+   <textarea class="txtArea" id="chatOutput" placeholder="Resposta"></textarea><br>
+   <input id="submit" type="submit" value="Enviar">
+
+   <script type="importmap">
+      {
+         "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+         }
+      }
+   </script>
+   <script type="module">
+      // https://ai.google.dev/gemini-api/docs/get-started/tutorial?lang=web&hl=pt-br
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+
+      const API_KEY = "AIzaSyAQW-I36q7IC2ZAvTgb6Kfds5v_HZrehuE";
+      const genAI = new GoogleGenerativeAI(API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+
+      const inputAPI = document.getElementById("chatInput");
+      const outAPI = document.getElementById("chatOutput");
+
+      const ask = async function() {
+         const text = inputAPI.value;
+         const result = await model.generateContent(text);
+         const response = await result.response.text();
+         
+         outAPI.value = response;
+      };
+
+      //var chatHistory = [];
+      const chat = model.startChat({
+         history: [],
+         generationConfig: {
+            maxOutputTokens: 100,
+         },
+      });
+
+      
+      const talk = async function() {
+         const text = inputAPI.value;
+         const result = await chat.sendMessage(text);
+         const response = await result.response.text();
+         
+         outAPI.value = response;
+      };
+
+      document.getElementById("submit").onclick = talk;
+
+   </script>
+</body>
+</html>
