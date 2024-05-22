@@ -14,7 +14,9 @@ py manage.py runserver [[IP]:[PORT]]
 
 Exemplo:
   py manage.py runserver 8080
+  
   py manage.py runserver localhost
+  
   py manage.py runserver localhost:8080
 
 
