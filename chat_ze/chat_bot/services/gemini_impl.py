@@ -57,11 +57,11 @@ chatTraduzir = [
 chatGerarCodigo = [
    dict(
       role = "user",
-      parts = [dict(text = "Oi, voce poderia gerar um código para mim? gere um texto corrido")]
+      parts = [dict(text = "Oi, voce poderia gerar um código para mim?")]
    ),
    dict(
       role = "model",
-      parts = [dict(text = "Claro, gerarei um texto corrido, que tipo de código gostaria que eu gerasse?")]
+      parts = [dict(text = "Claro, que tipo de código gostaria que eu gerasse?")]
    )
 ]
 

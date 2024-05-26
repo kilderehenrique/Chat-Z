@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from .services import gemini_impl as gnai
+from markdown_it import MarkdownIt
+
+# Converte a estrutura de .md para .html
+md = MarkdownIt('commonmark', {'breaks':True, 'html':True}).enable('table')
 
 def home(request):
    return render(request, 'home.html')
@@ -9,8 +13,7 @@ def resumo(request):
 
    if(texto != None):
       response = {
-         #'resumo': textToHTML(gnai.resumir(texto))
-         'resumo': gnai.resumir(texto)
+         'resumo': md.render(gnai.resumir(texto))
       }
    else:
       response = {}
@@ -22,8 +25,7 @@ def traducao(request):
 
    if(texto != None):
       response = {
-         #'traducao': textToHTML(gnai.traduzir(texto))
-         'traducao': gnai.traduzir(texto)
+         'traducao': md.render(gnai.traduzir(texto))
       }
    else:
       response = {}
@@ -35,20 +37,9 @@ def gerar_codigo(request):
 
    if(texto != None):
       response = {
-         #'codigo': textToHTML(gnai.gerar_codigo(texto))
-         #'codigo': f"<code>{gnai.gerar_codigo(texto)}</code>"
-         'codigo': gnai.gerar_codigo(texto)
+         'codigo': md.render(gnai.gerar_codigo(texto))
       }
    else:
       response = {}
 
    return render(request, 'gerar_codigo.html', response)
-
-"""
-def textToHTML(texto):
-   texto = f"<p>{texto}"
-   texto = texto.replace(".", ".</p><p>")
-   texto = f"{texto}</p>"
-
-   return texto
-"""
