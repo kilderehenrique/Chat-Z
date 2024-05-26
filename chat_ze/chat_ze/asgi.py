@@ -1,5 +1,5 @@
 """
-ASGI config for chat_z project.
+ASGI config for chat_ze project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chat_z.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chat_ze.settings')
 
 application = get_asgi_application()
